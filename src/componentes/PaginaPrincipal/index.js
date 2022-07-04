@@ -126,6 +126,61 @@ function PaginaPrincipal() {
     alert('A senha deve ter no mínimo 6 caracteres.')
   };
 
+  function logar(event) {
+    event.preventDefault();
+    const email = emailLogin.value;
+    const password = senhaLogin.value;
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const uid = user.uid;
+            
+          } else {
+            console.log('Usuario deslogado')
+          }
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)
+        if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
+          alert('Usuário não encontrado.');
+        };
+        if (errorMessage === 'Firebase: Error (auth/wrong-password).') {
+          alert('Senha errada!');
+        };
+        if (errorMessage === 'Firebase: Error (auth/invalid-email).') {
+          alert('Email inválido');
+        };
+        if (errorMessage === 'Firebase: Error (auth/internal-error).') {
+          alert('Senha em branco.')
+        }
+      });
+  }
+
+  function recuperSenha(event) {
+    event.preventDefault();
+    
+    const auth = getAuth();
+    const email = emailRecuperarSenha.value;
+    
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert('Email de redefinição de senha enviado. (verifique a caixa de spam).');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+          alert(errorMessage)
+      });
+  };
 
   return (
     <section className='body'>
@@ -246,3 +301,6 @@ function PaginaPrincipal() {
 };
 
 export default PaginaPrincipal;
+
+formLogin.addEventListener('submit', logar)
+formRecuperarSenha.addEventListener('submit', recuperSenha);
