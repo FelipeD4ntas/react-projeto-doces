@@ -1,4 +1,4 @@
-import React, { useRef, useEffect} from 'react';
+import React, { useRef, useLayoutEffect} from 'react';
 import imgLogo from '../assets/imagens/logo.png';
 import imgIconeRestaurante from '../assets/imagens/icones/icone-restaurante.svg'
 import './style.css'
@@ -18,118 +18,119 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const boxFormSeInscrever = document.querySelector('[data-js="box-form-inscricao"]');
-const boxFormLogin = useRef()
-const boxPrincipal = document.querySelector('[data-js="box-principal"]');
-const boxRecuperarSenha = document.querySelector('[data-js="box-recuperar-senha"]');
-const formInscricao = document.querySelector('[data-js="form-se-inscrever"]');
-const formLogin = document.querySelector('[data-js="form-login"]');
-const formRecuperarSenha = document.querySelector('[data-js="form-recuperar-senha"]');
-const linkLogin = document.querySelector('[data-js="link-login"]');
-const emailInscricao = document.querySelector('[data-js="emailInscricao"]');
-const senhaInscricao = document.querySelector('[data-js="senhaInscricao"]')
-
-console.log(boxFormLogin)
-let index = 1;
-
-function clicouBtnInscricao() {
-  index = 1
-  ++index
-  
-  setTimeout(() => {
-    switch (index) {
-      case 1: 
-        boxPrincipal.style.right = '0%';
-        break
-      case 2: 
-        boxFormLogin.style.left = '100%';
-        boxFormSeInscrever.style.right = '0%';
-        break
-      case 3: 
-        boxFormLogin.style.left = '0%';
-        boxFormSeInscrever.style.right = '100%';
-        break
-    }
-  }, 500);
-};
-
-function clicouBtnLogin() {
-  index = 1
-  index += 2
- 
-  setTimeout(() => {
-    switch (index) {
-      case 1: 
-        boxPrincipal.style.right = '0%';
-        break
-      case 2: 
-        boxFormLogin.style.left = '100%';
-        boxFormSeInscrever.style.right = '0%';
-        break
-      case 3: 
-        boxFormLogin.style.left = '0%';
-        boxFormSeInscrever.style.right = '100%';
-        break
-    }
-  }, 500);
-};
-
-function clicouRecuperarSenha() {
-  index = 1
-  index += 3
- 
-  setTimeout(() => {
-    switch (index) {
-      case 4: 
-        boxRecuperarSenha.style.top = '0%';
-    }
-  }, 500);
-};
-
-function clicouBtnCancelar() {
-  index = 1
- 
-  setTimeout(() => {
-    switch (index) {
-      case 1: 
-       boxRecuperarSenha.style.top = '100%';
-    }
-  }, 500);
-}
-
-function seIncrever(event) {
-  event.preventDefault();
-
-  const email = emailInscricao.value;
-  const pattern =  /^[a-zA-Z0-9]{6,}$/;
-  const senhaValida = pattern.test(senhaInscricao.value);
-
-  if (senhaValida) {
-    const password = senhaInscricao.value;
-
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert(`Conta criada com sucesso.`);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-    
-    return
-  }
-  
-  alert('A senha deve ter no mínimo 6 caracteres.')
-};
 
 function PaginaPrincipal() {
+  const boxFormSeInscrever = useRef();
+  const boxFormLogin = useRef()
+  const boxPrincipal = useRef()
+  const boxRecuperarSenha = useRef()
+  const formInscricao = useRef()
+  const formLogin = useRef()
+  const formRecuperarSenha = useRef()
+  const linkLogin = useRef()
+  const emailInscricao = useRef()
+  const senhaInscricao = useRef()
+
+  let index = 1;
+
+  function clicouBtnInscricao() {
+    index = 1
+    ++index
+    
+    setTimeout(() => {
+      switch (index) {
+        case 1: 
+          boxPrincipal.current.style.right = '0%';
+          break
+        case 2: 
+          boxFormLogin.current.style.left = '100%';
+          boxFormSeInscrever.current.style.right = '0%';
+          break
+        case 3: 
+          boxFormLogin.current.style.left = '0%';
+          boxFormSeInscrever.current.style.right = '100%';
+          break
+      }
+    }, 500);
+  };
+
+  function clicouBtnLogin() {
+    index = 1
+    index += 2
+  
+    setTimeout(() => {
+      switch (index) {
+        case 1: 
+          boxPrincipal.current.style.right = '0%';
+          break
+        case 2: 
+          boxFormLogin.current.style.left = '100%';
+          boxFormSeInscrever.current.style.right = '0%';
+          break
+        case 3: 
+          boxFormLogin.current.style.left = '0%';
+          boxFormSeInscrever.current.style.right = '100%';
+          break
+      }
+    }, 500);
+  };
+
+  function clicouRecuperarSenha() {
+    index = 1
+    index += 3
+  
+    setTimeout(() => {
+      switch (index) {
+        case 4: 
+          boxRecuperarSenha.current.style.top = '0%';
+      }
+    }, 500);
+  };
+
+  function clicouBtnCancelar() {
+    index = 1
+  
+    setTimeout(() => {
+      switch (index) {
+        case 1: 
+        boxRecuperarSenha.current.style.top = '100%';
+      }
+    }, 500);
+  }
+
+  function seIncrever(event) {
+    event.preventDefault();
+
+    const email = emailInscricao.value;
+    const pattern =  /^[a-zA-Z0-9]{6,}$/;
+    const senhaValida = pattern.test(senhaInscricao.value);
+
+    if (senhaValida) {
+      const password = senhaInscricao.value;
+
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          alert(`Conta criada com sucesso.`);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage);
+        });
+      
+      return
+    }
+    
+    alert('A senha deve ter no mínimo 6 caracteres.')
+  };
+
+
   return (
     <section className='body'>
       <div className="box-telas">
-        <div className="box-geral box-principal" data-js="box-principal">
+        <div className="box-geral box-principal" ref={boxPrincipal}>
           <section className="box-logo">
             <img src={imgLogo} alt="Logo Doces Pâtissier"/>
           </section>
@@ -146,7 +147,7 @@ function PaginaPrincipal() {
           </section>
         </div>
 
-        <div className="box-geral box-form-inscricao" data-js="box-form-inscricao">
+        <div className="box-geral box-form-inscricao" ref={boxFormSeInscrever}>
           <div className="box-titulo-sign-up">
             <div className="bolinha"></div>
             <div className="bolinha"></div>
@@ -158,15 +159,15 @@ function PaginaPrincipal() {
           </div>
         
           <div className="box-form">
-            <form className="form-se-inscrever" data-js="form-se-inscrever">
+            <form className="form-se-inscrever" ref={formInscricao}>
               <label htmlFor="emailInscricao">
                 Email
-                <input type="email" id="emailInscricao" data-js="emailInscricao" name="user-email" placeholder="Enter email..."/>
+                <input type="email" id="emailInscricao" ref={emailInscricao} name="user-email" placeholder="Enter email..."/>
               </label>
         
               <label htmlFor="senhaInscricao">
                 Password
-                <input type="password" id="senhaInscricao" data-js="senhaInscricao" name="user-password" placeholder="Enter password..."/>
+                <input type="password" id="senhaInscricao" ref={senhaInscricao} name="user-password" placeholder="Enter password..."/>
               </label>
         
               <button type="submit" className="btn btn-signup" data-js="cont-signup" onClick={clicouBtnInscricao}>
@@ -181,7 +182,7 @@ function PaginaPrincipal() {
           </div>
         </div>
         
-        <div className="box-geral box-form-login" data-js="box-form-login">
+        <div className="box-geral box-form-login" ref={boxFormLogin}>
           <div className="box-titulo-sign-up">
             <div className="bolinha"></div>
             <div className="bolinha"></div>
@@ -193,7 +194,7 @@ function PaginaPrincipal() {
           </div>
         
           <div className="box-form">
-            <form className="form-se-inscrever" data-js="form-login" onSubmit={seIncrever}>
+            <form className="form-se-inscrever" ref={formLogin} onSubmit={seIncrever}>
               <label htmlFor="emailLogin">
                 Email
                 <input type="email" id="emailLogin" name="user-email" placeholder="Enter email..."/>
@@ -204,7 +205,7 @@ function PaginaPrincipal() {
                 <input type="password" id="senhaLogin" name="user-password" placeholder="Enter password..."/>
               </label>
         
-              <a href="#" data-js="link-login" targe="_self" className="btn btn-login">
+              <a href="#" ref={linkLogin} targe="_self" className="btn btn-login">
                 <button type="submit" className="btn-logar">
                   Login
                 </button>
@@ -220,13 +221,13 @@ function PaginaPrincipal() {
           </div>
         </div>
 
-        <div className="box-geral box-recuperar-senha" data-js="box-recuperar-senha">
+        <div className="box-geral box-recuperar-senha" ref={boxRecuperarSenha}>
           <div className="descricao-recuperar-senha">
             <h1>Password Reset</h1>
             <p>Enter your email address and we'll send you instructions on how to reset your password.</p>
           </div>
           <div className="box-form box-form-recuperar-senha">
-            <form className="form-recuperar-senha" data-js="form-recuperar-senha">
+            <form className="form-recuperar-senha" ref={formRecuperarSenha}>
               <label htmlFor="emailRecuperarSenha">
                 Email
                 <input type="email" id="emailRecuperarSenha" name="user-email" placeholder="Enter email..." />
