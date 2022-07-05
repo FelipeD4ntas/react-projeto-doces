@@ -21,15 +21,18 @@ const app = initializeApp(firebaseConfig);
 
 function PaginaPrincipal() {
   const boxFormSeInscrever = useRef();
-  const boxFormLogin = useRef()
-  const boxPrincipal = useRef()
-  const boxRecuperarSenha = useRef()
-  const formInscricao = useRef()
-  const formLogin = useRef()
-  const formRecuperarSenha = useRef()
-  const linkLogin = useRef()
-  const emailInscricao = useRef()
-  const senhaInscricao = useRef()
+  const boxFormLogin = useRef();
+  const boxPrincipal = useRef();
+  const boxRecuperarSenha = useRef();
+  const formInscricao = useRef();
+  const formLogin = useRef();
+  const formRecuperarSenha = useRef();
+  const linkLogin = useRef();
+  const emailInscricao = useRef();
+  const emailRecuperarSenha = useRef();
+  const emailLogin = useRef();
+  const senhaInscricao = useRef();
+  const senhaLogin = useRef();
 
   let index = 1;
 
@@ -101,12 +104,12 @@ function PaginaPrincipal() {
   function seIncrever(event) {
     event.preventDefault();
 
-    const email = emailInscricao.value;
+    const email = emailInscricao.current.value;
     const pattern =  /^[a-zA-Z0-9]{6,}$/;
-    const senhaValida = pattern.test(senhaInscricao.value);
+    const senhaValida = pattern.test(senhaInscricao.current.value);
 
     if (senhaValida) {
-      const password = senhaInscricao.value;
+      const password = senhaInscricao.current.value;
 
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
@@ -117,7 +120,10 @@ function PaginaPrincipal() {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert(errorMessage);
+          console.log(errorMessage)
+          if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+            alert('Usuário já cadastrado.')
+          }
         });
       
       return
@@ -128,8 +134,8 @@ function PaginaPrincipal() {
 
   function logar(event) {
     event.preventDefault();
-    const email = emailLogin.value;
-    const password = senhaLogin.value;
+    const email = emailLogin.current.value;
+    const password = senhaLogin.current.value;
     const auth = getAuth();
 
     signInWithEmailAndPassword(auth, email, password)
@@ -140,7 +146,7 @@ function PaginaPrincipal() {
         onAuthStateChanged(auth, (user) => {
           if (user) {
             const uid = user.uid;
-            
+            console.log('logado')
           } else {
             console.log('Usuario deslogado')
           }
@@ -169,7 +175,7 @@ function PaginaPrincipal() {
     event.preventDefault();
     
     const auth = getAuth();
-    const email = emailRecuperarSenha.value;
+    const email = emailRecuperarSenha.current.value;
     
     sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -214,7 +220,7 @@ function PaginaPrincipal() {
           </div>
         
           <div className="box-form">
-            <form className="form-se-inscrever" ref={formInscricao}>
+            <form className="form-se-inscrever" ref={formInscricao} onSubmit={seIncrever}>
               <label htmlFor="emailInscricao">
                 Email
                 <input type="email" id="emailInscricao" ref={emailInscricao} name="user-email" placeholder="Enter email..."/>
@@ -249,15 +255,15 @@ function PaginaPrincipal() {
           </div>
         
           <div className="box-form">
-            <form className="form-se-inscrever" ref={formLogin} onSubmit={seIncrever}>
+            <form className="form-se-inscrever" ref={formLogin} onSubmit={logar}>
               <label htmlFor="emailLogin">
                 Email
-                <input type="email" id="emailLogin" name="user-email" placeholder="Enter email..."/>
+                <input type="email" id="emailLogin" name="user-email" placeholder="Enter email..." ref={emailLogin}/>
               </label>
         
               <label htmlFor="senhaLogin">
                 Password
-                <input type="password" id="senhaLogin" name="user-password" placeholder="Enter password..."/>
+                <input type="password" id="senhaLogin" name="user-password" placeholder="Enter password..." ref={senhaLogin}/>
               </label>
         
               <a href="#" ref={linkLogin} targe="_self" className="btn btn-login">
@@ -282,10 +288,10 @@ function PaginaPrincipal() {
             <p>Enter your email address and we'll send you instructions on how to reset your password.</p>
           </div>
           <div className="box-form box-form-recuperar-senha">
-            <form className="form-recuperar-senha" ref={formRecuperarSenha}>
+            <form className="form-recuperar-senha" ref={formRecuperarSenha} onSubmit={recuperSenha}>
               <label htmlFor="emailRecuperarSenha">
                 Email
-                <input type="email" id="emailRecuperarSenha" name="user-email" placeholder="Enter email..." />
+                <input type="email" id="emailRecuperarSenha" name="user-email" placeholder="Enter email..." ref={emailRecuperarSenha} />
               </label>
               <button className="btn btn-recuperar-senha" data-js="botao-recuperar-senha" type="submit">
                   submit
@@ -301,6 +307,3 @@ function PaginaPrincipal() {
 };
 
 export default PaginaPrincipal;
-
-formLogin.addEventListener('submit', logar)
-formRecuperarSenha.addEventListener('submit', recuperSenha);
