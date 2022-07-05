@@ -1,0 +1,31 @@
+.body-orders {
+  overflow: hidden;
+  width: 100%;
+  padding-top: 60px;
+}
+
+.box-orders {
+  margin: 30px;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.box-orders h1 {
+  color: #868686;
+  font-weight: normal;
+}
+
+.box-lista-orders {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.box-lista-orders li {
+  list-style: none;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #868686;
+}
+

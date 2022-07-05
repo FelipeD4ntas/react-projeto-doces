@@ -1,4 +1,6 @@
-import React, { useRef, useLayoutEffect} from 'react';
+import React, { useRef, useState} from 'react';
+import { Link } from 'react-router-dom';
+import Profile from '../Profile';
 import imgLogo from '../assets/imagens/logo.png';
 import imgIconeRestaurante from '../assets/imagens/icones/icone-restaurante.svg'
 import './style.css'
@@ -17,7 +19,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
+const auth = getAuth();
 
 function PaginaPrincipal() {
   const boxFormSeInscrever = useRef();
@@ -33,7 +35,8 @@ function PaginaPrincipal() {
   const emailLogin = useRef();
   const senhaInscricao = useRef();
   const senhaLogin = useRef();
-
+  
+  const [usuarioEstaLogado, setUsuarioLogado] = useState('/');
   let index = 1;
 
   function clicouBtnInscricao() {
@@ -136,17 +139,17 @@ function PaginaPrincipal() {
     event.preventDefault();
     const email = emailLogin.current.value;
     const password = senhaLogin.current.value;
-    const auth = getAuth();
-
+  
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-
-        onAuthStateChanged(auth, (user) => {
+      .then(() => {
+        const auth = getAuth();
+        const usuarioProfile = auth.currentUser;
+        onAuthStateChanged(auth, async (user) => {
           if (user) {
-            const uid = user.uid;
-            console.log('logado')
+            console.log('Usuraio logado')
+            setUsuarioLogado('/pagina-produtos')
+      
+            Profile(usuarioProfile);
           } else {
             console.log('Usuario deslogado')
           }
@@ -187,7 +190,7 @@ function PaginaPrincipal() {
           alert(errorMessage)
       });
   };
-
+ 
   return (
     <section className='body'>
       <div className="box-telas">
@@ -265,12 +268,11 @@ function PaginaPrincipal() {
                 Password
                 <input type="password" id="senhaLogin" name="user-password" placeholder="Enter password..." ref={senhaLogin}/>
               </label>
-        
-              <a href="#" ref={linkLogin} targe="_self" className="btn btn-login">
-                <button type="submit" className="btn-logar">
+              <button type="submit" className="btn btn-login" onClick={logar}>
+                <Link to={usuarioEstaLogado} className='btn-logar'>
                   Login
-                </button>
-              </a>
+                </Link>
+              </button>
               <a href="#" className="recuperar-senha" data-js="btn-esqueceu-senha" onClick={clicouRecuperarSenha}>Forgot Password?</a>
             </form>
         

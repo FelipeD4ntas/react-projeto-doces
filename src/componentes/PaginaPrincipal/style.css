@@ -142,9 +142,8 @@ html {
 }
 
 .btn-logar {
-  background: transparent;
   text-transform: uppercase;
-  color: white;
+  color: white !important;
 }
 
 .signup {

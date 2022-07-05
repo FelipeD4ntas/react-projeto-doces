@@ -1,24 +1,64 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import Footer from '../Footer';
+import Topo from '../Topo';
 import imgDoces from '../assets/imagens/doces.jpg'
 import imgCurso from '../assets/imagens/cursos.jpg'
 import iconePin from '../assets/imagens/icones/pin.svg'
-import iconeFood from '../assets/imagens/icones/food.svg'
-import iconeArtigo from '../assets/imagens/icones/artigo.svg'
-import iconePerfil from '../assets/imagens/icones/perfil.svg'
+
 import './style.css';
 
 
 function PaginaProdutos() {
+    const inputBuscar = useRef();
+    const cardProduto = useRef();
+    const cardProdutoCurso = useRef();
+
+    function mostrarProduto(produtoNaoEncontrado, add, remove) {
+      produtoNaoEncontrado.forEach((produtoNaoEncontrado) => {
+        produtoNaoEncontrado.classList.remove(remove);
+        produtoNaoEncontrado.classList.add(add);
+      });
+    };
+
+    function ocultarProduto(produtoEncontrado, add, remove) {
+      produtoEncontrado.forEach((produtoEncontrado) => {
+        produtoEncontrado.classList.remove(remove);
+        produtoEncontrado.classList.add(add);
+      });
+    };
+
+    function filtrandoProduto(produtos, valorInput, encontrando) {
+      return produtos.filter((produto) => {
+        
+        const combinou = produto.textContent.toLowerCase().includes(valorInput.toLowerCase())
+        return encontrando ? combinou : !combinou;
+      });
+    };
+
+    function procurandoProduto(produtos, valorInput) {
+      const produtoNaoEncontrado = filtrandoProduto(produtos, valorInput, false);
+      const produtoEncontrado = filtrandoProduto(produtos, valorInput, true);
+
+      mostrarProduto(produtoNaoEncontrado, 'hidden', 'block');
+      ocultarProduto(produtoEncontrado, 'block', 'hidden');
+    };
+    
+    function buscarProduto() {
+      const produtos = [cardProduto.current, cardProdutoCurso.current];
+      const valorInput = inputBuscar.current.value
+      procurandoProduto(produtos, valorInput);
+    }
+
     return (
         <section className="body-produtos">
-          <header  className="topo"></header> 
+          <Topo />
           <div className="box-geral box-geral-pagina-produtos">
               <section className="box-buscar">
-                  <input type="text" placeholder="Search..." id="inputBuscar"/>
+                  <input type="text" placeholder="Search..." id="inputBuscar" ref={inputBuscar} onInput={buscarProduto}/>
               </section>
 
               <section className="box-produtos">
-                  <div className="card-produto">
+                  <div className="card-produto" ref={cardProduto}>
                       <div className="titulo-produto">
                           <h1>Patissier</h1>
                       </div>
@@ -39,7 +79,7 @@ function PaginaProdutos() {
                       </div>
                   </div>
 
-                  <div className="card-produto">
+                  <div className="card-produto" ref={cardProdutoCurso}>
                       <div className="titulo-produto">
                           <h1>Cursos Online</h1>
                       </div>
@@ -62,28 +102,7 @@ function PaginaProdutos() {
               </section>
           </div>
           
-          <footer>
-              <button>
-                  <a href="#">
-                      <span className="material-symbols-outlined"><img src={iconeFood} /></span>
-                      <p>Food</p>
-                  </a>
-              </button>
-
-              <button>
-                  <a href="#">
-                      <span className="material-symbols-outlined"><img src={iconeArtigo} /></span>
-                      <p>Orders</p>
-                  </a>
-              </button>
-              
-              <button>
-                  <a href="#">
-                      <span className="material-symbols-outlined"><img src={iconePerfil} /></span>
-                      <p>Profile</p>
-                  </a>
-              </button>
-          </footer>
+          <Footer />
         </section>
     );
 }

@@ -1,0 +1,10 @@
+.body-profile {
+  overflow: hidden;
+  width: 100%;
+  padding-top: 60px;
+}
+
+.box-profile img {
+  width: 100px;
+  border-radius: 50%;
+}
