@@ -1,8 +1,10 @@
 import React from "react";
 
-function Topo() {
+function Topo(props) {
   return (
-    <header  className="topo"></header> 
+    <header  className="topo">
+      {props.children}
+    </header> 
   );
 };
 

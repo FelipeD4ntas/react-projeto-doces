@@ -1,14 +1,163 @@
 .body-profile {
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
   padding-top: 60px;
 }
 
 .box-profile {
   justify-content: flex-start !important;
+  position: relative !important;
+}
+
+.config-profile {
+  position: absolute;
+  overflow: auto;
 }
 
 .box-profile img {
   width: 100px;
   border-radius: 50%;
+}
+
+.box-profile h1 {
+  margin: 40px;
+  font-size: 2.2rem;
+}
+
+.box-profile img,
+.telefone-usuario {
+  margin-bottom: 40px;
+}
+
+.telefone-usuario p,
+.email-usuario p {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: #868686; 
+}
+
+.icone-config {
+  width: 30px;
+  filter: invert(100%);
+  height: max-content;
+  margin: 30px 0;
+  cursor: pointer;
+}
+
+.topo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.box-icone-voltar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 0 30px;
+}
+
+.box-icone-config {
+  margin: 0 30px;
+}
+
+.box-config-perfil {
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+  position: absolute;
+  top: 10%;
+  left: 100%;
+}
+
+.box-config-perfil h1 {
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  font-size: 1.9rem;
+}
+
+.box-profile label {
+  width: 90%;
+  cursor: pointer;
+}
+
+
+.box-profile input {
+  padding: 10px;
+}
+
+
+input[type='file'] {
+    display: none;
+}
+
+.max-width {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: #c7c7c760;
+    margin-top: 15px;
+}
+
+#imgPhoto {
+    margin: 30px 0;
+    max-width: 200px;
+    width: 100%;
+    padding: 10px;
+    background-color: #eee;
+    border: 5px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s;
+}
+
+#imgPhoto:hover{
+    background-color: rgb(180, 180, 180);
+    border: 5px solid #111;
+}
+
+.p-mudar-foto {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #f4a15d;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.form-profile {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 200px;
+}
+
+.btn-salvar-perfil {
+  width: 90%;
+  text-transform: uppercase;
+  color: white;
+  background: #f4a15d;
+}
+
+.icone-logout {
+  margin: 0 !important;
+  width: 30px !important;
+  margin-right: 10px !important;
+  background: #86292479;
+}
+
+.btn-logout {
+  margin-top: 20px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.btn-logout a {
+  font-size: 1.8rem !important;
+  color: #862924 !important;
 }

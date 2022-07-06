@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Footer from '../Footer';
 import Topo from '../Topo';
+import ProdutoPattisier from '../ProdutoPatissier';
 import imgDoces from '../assets/imagens/doces.jpg'
 import imgCurso from '../assets/imagens/cursos.jpg'
 import iconePin from '../assets/imagens/icones/pin.svg'
@@ -12,6 +13,7 @@ function PaginaProdutos() {
     const inputBuscar = useRef();
     const cardProduto = useRef();
     const cardProdutoCurso = useRef();
+    const boxProdutoPatissier = useRef();
 
     function mostrarProduto(produtoNaoEncontrado, add, remove) {
       produtoNaoEncontrado.forEach((produtoNaoEncontrado) => {
@@ -48,6 +50,10 @@ function PaginaProdutos() {
       const valorInput = inputBuscar.current.value
       procurandoProduto(produtos, valorInput);
     }
+    
+    function clicouBtnProdutoPatissier() {
+      boxProdutoPatissier.current.style.left = '0%';
+    }
 
     return (
         <section className="body-produtos">
@@ -74,8 +80,11 @@ function PaginaProdutos() {
                           </p>
                           <p className="paragrafo-descricao">Modern take on old scholl Vietnamese street food. You'll love it, we promise :)</p>
                           <div className="box-btn-ver-produtos">
-                              <button className="btn btn-ver-produtos">Ver Produtos</button>
+                              <button className="btn btn-ver-produtos" onClick={clicouBtnProdutoPatissier}>Ver Produtos</button>
                           </div>
+                      </div>
+                      <div className='box-produto-pattisier' ref={boxProdutoPatissier}>
+                        <ProdutoPattisier elemento = {boxProdutoPatissier}/>
                       </div>
                   </div>
 

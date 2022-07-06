@@ -164,3 +164,8 @@ footer button a:focus img {
   display: none;
 }
 
+.box-produto-pattisier {
+  position: absolute;
+  left: 100%;
+  transition: 1s;
+}
