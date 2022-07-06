@@ -4,6 +4,10 @@
   padding-top: 60px;
 }
 
+.box-profile {
+  justify-content: flex-start !important;
+}
+
 .box-profile img {
   width: 100px;
   border-radius: 50%;

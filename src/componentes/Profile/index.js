@@ -4,11 +4,11 @@ import Topo from "../Topo";
 import placeholderPerfil from '../assets/imagens/placeholderPerfil.webp'
 import './style.css';
 
-function Profile(usuario) {
-  const [displayName, setName] = useState('Nome Usuario');
-  const [email, setEmail] = useState(usuario.email);
-  const [photoURL, setPhoto] = useState(placeholderPerfil);
-  const [telefone, setTelefone] = useState('DDD 00000-0000');
+function Profile(user) {
+  let displayName = 'Nome Usuario'
+  let email = user.email
+  let photoURL = placeholderPerfil
+  let telefone= 'DDD 00000-0000';
  
   return (
     <>

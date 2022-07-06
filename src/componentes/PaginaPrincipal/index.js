@@ -6,7 +6,8 @@ import imgIconeRestaurante from '../assets/imagens/icones/icone-restaurante.svg'
 import './style.css'
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
+import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, getDocs} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCLRw6P1217lxAUOSx79SUKQZ3REyXdg_w',
@@ -113,15 +114,15 @@ function PaginaPrincipal() {
 
     if (senhaValida) {
       const password = senhaInscricao.current.value;
-
       const auth = getAuth();
+
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
+        .then(() => {
+      
           alert(`Conta criada com sucesso.`);
         })
         .catch((error) => {
-          const errorCode = error.code;
+          
           const errorMessage = error.message;
           console.log(errorMessage)
           if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
@@ -139,24 +140,19 @@ function PaginaPrincipal() {
     event.preventDefault();
     const email = emailLogin.current.value;
     const password = senhaLogin.current.value;
-  
+
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         const auth = getAuth();
-        const usuarioProfile = auth.currentUser;
         onAuthStateChanged(auth, async (user) => {
           if (user) {
-            console.log('Usuraio logado')
             setUsuarioLogado('/pagina-produtos')
-      
-            Profile(usuarioProfile);
           } else {
             console.log('Usuario deslogado')
           }
         });
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage)
         if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
@@ -185,7 +181,7 @@ function PaginaPrincipal() {
         alert('Email de redefinição de senha enviado. (verifique a caixa de spam).');
       })
       .catch((error) => {
-        const errorCode = error.code;
+        
         const errorMessage = error.message;
           alert(errorMessage)
       });
@@ -270,12 +266,11 @@ function PaginaPrincipal() {
               </label>
               <button type="submit" className="btn btn-login" onClick={logar}>
                 <Link to={usuarioEstaLogado} className='btn-logar'>
-                  Login
+                  Login 
                 </Link>
               </button>
               <a href="#" className="recuperar-senha" data-js="btn-esqueceu-senha" onClick={clicouRecuperarSenha}>Forgot Password?</a>
             </form>
-        
           </div>
           <div className="box-btn btn-possui-conta">
             <button className="btn btn-criar-conta" data-js="botao-se-inscrever" onClick={clicouBtnInscricao}>
