@@ -1,5 +1,5 @@
 .body-orders {
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100%;
   padding-top: 60px;
 }
@@ -8,7 +8,7 @@
   margin: 30px;
   align-items: flex-start;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .box-orders h1 {

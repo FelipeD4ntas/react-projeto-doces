@@ -114,7 +114,7 @@ function PaginaProdutos() {
           <div className='box-produto-pattisier' ref={boxProdutoPatissier}>
               <ProdutoPattisier elemento = {boxProdutoPatissier}/>
           </div>
-          <div className='footer-pagina-produtos'>
+          <div className='container-footer'>
             <Footer>
               <button>
                 <Link to="/pagina-produtos">

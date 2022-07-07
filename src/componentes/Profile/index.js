@@ -29,118 +29,94 @@ function Profile(user) {
   }
   
   return (
-    <>
-      <section className="body-profile">
-        <div className="box-perfil">
-          <Topo>
-            <div className="box-icone-config">
-              <img src={iconeConfig} alt="icone config" className="icone-config" onClick={configurarPerfil}/>
-            </div>
-          </Topo>
-          <div className="box-geral box-profile">
-            <h1>{displayName}</h1>
-            <img src={photoURL} alt="Foto Perfil" />
-            <div className="telefone-usuario">
-              <p>Phone Number</p>
-              <h2>{telefone}</h2>
-            </div>
-            <div className="email-usuario">
-              <p>Email</p>
-              <h2>{email}</h2>
-            </div>
+    <section className="body-profile">
+      <Topo>
+        <div className="box-icone-config">
+          <img src={iconeConfig} alt="icone config" className="icone-config" onClick={configurarPerfil}/>
+        </div>
+      </Topo>
+      <div className="box-perfil">
+        <div className="box-geral box-profile">
+          <h1>{displayName}</h1>
+          <img src={photoURL} alt="Foto Perfil" />
+          <div className="telefone-usuario">
+            <p>Phone Number</p>
+            <h2>{telefone}</h2>
           </div>
-          <div className="footer-pagina-produtos">
-            <Footer>
-                <button>
-                  <Link to="/pagina-produtos">
-                      <img src={iconeFood} />
-                      <p>Food</p>
-                  </Link>
-                </button>
-                <button>
-                    <Link to="/pagina-order">
-                        <img src={iconeArtigo} />
-                        <p>Orders</p>
-                    </Link>
-                </button>
+          <div className="email-usuario">
+            <p>Email</p>
+            <h2>{email}</h2>
+          </div>
+        </div>
+      </div>
+
+      <div className="box-config-perfil" ref={boxConfigPerfil}>
+        <Topo>
+          <div className="box-icone-voltar">
+            <img src={iconeVoltar} alt="icone config" className="icone-config" onClick={volarPerfil}/>
+            <h1>My Profile</h1>
+          </div>
+        </Topo>
+          <form className="form-profile">
+            <div className="box-geral box-profile config-profile">
+              <label htmlFor="nome-usuario">
+                Full Name
+                <input id="nome-usuario" name="nome-usuario" type="text" />
+              </label>
             
-                <button>
-                    <Link to="/pagina-profile">
-                      <img src={iconePerfil} />
-                        <p>Profile</p>
-                    </Link>
-                </button>
-              </Footer>
-          </div>
-        </div>
-        
-        <div className="box-config-perfil" ref={boxConfigPerfil}>
-          <Topo>
-            <div className="box-icone-voltar">
-              <img src={iconeVoltar} alt="icone config" className="icone-config" onClick={volarPerfil}/>
-              <h1>My Profile</h1>
-            </div>
-          </Topo>
-            <form className="form-profile">
-              <div className="box-geral box-profile config-profile">
-                <label htmlFor="nome-usuario">
-                  Full Name
-                  <input id="nome-usuario" name="nome-usuario" type="text" />
-                </label>
-              
-                <label htmlFor="img-perfil-user">
-                  Profile Picture
-                  <div className="max-width">
-                    <div className="imageContainer">
-                      <img src={photoURL} alt="Selecione uma imagem" id="imgPhoto" />
-                    </div>
+              <label htmlFor="img-perfil-user">
+                Profile Picture
+                <div className="max-width">
+                  <div className="imageContainer">
+                    <img src={photoURL} alt="Selecione uma imagem" id="imgPhoto" />
                   </div>
-                  <input type="file" id="img-perfil-user" name="img-perfil-user" accept="image/*" />
-                  <p className="p-mudar-foto">Mudar Foto</p>
-                </label>
-                <label htmlFor="telefone-usuario">
-                  Phone Number
-                  <input id="telefone-usuario" name="telefone-usuario" type="text" />
-                </label>
-                <label htmlFor="email-usuario">
-                  Email
-                  <input id="email-usuario" name="email-usuario" type="email" />
-                </label>
-                 <button className="btn btn-salvar-perfil" type="submit">
-                  Save
-                </button>
-                <button className="btn btn-logout">
-                  <img src={iconeLogout} alt="icone logout" className="icone-logout"/>
-                  <a href="#">Log Out</a>
-                </button>
-              </div>
-            </form>
-            <div className="footer-pagina-produtos">
-              <Footer>
-                <button>
-                  <Link to="/pagina-produtos">
-                      <img src={iconeFood} />
-                      <p>Food</p>
-                  </Link>
-                </button>
-                <button>
-                    <Link to="/pagina-order">
-                        <img src={iconeArtigo} />
-                        <p>Orders</p>
-                    </Link>
-                </button>
-              
-                <button>
-                    <Link to="/pagina-profile">
-                      <img src={iconePerfil} />
-                        <p>Profile</p>
-                    </Link>
-                </button>
-              </Footer>
+                </div>
+                <input type="file" id="img-perfil-user" name="img-perfil-user" accept="image/*" />
+                <p className="p-mudar-foto">Mudar Foto</p>
+              </label>
+              <label htmlFor="telefone-usuario">
+                Phone Number
+                <input id="telefone-usuario" name="telefone-usuario" type="text" />
+              </label>
+              <label htmlFor="email-usuario">
+                Email
+                <input id="email-usuario" name="email-usuario" type="email" />
+              </label>
+                <button className="btn btn-salvar-perfil" type="submit">
+                Save
+              </button>
+              <button className="btn btn-logout">
+                <img src={iconeLogout} alt="icone logout" className="icone-logout"/>
+                <a href="#">Log Out</a>
+              </button>
             </div>
+          </form>
+      </div>
+
+      <div className="container-footer">
+          <Footer>
+              <button>
+                <Link to="/pagina-produtos">
+                    <img src={iconeFood} />
+                    <p>Food</p>
+                </Link>
+              </button>
+              <button>
+                  <Link to="/pagina-order">
+                      <img src={iconeArtigo} />
+                      <p>Orders</p>
+                  </Link>
+              </button>
+          
+              <button>
+                  <Link to="/pagina-profile">
+                    <img src={iconePerfil} />
+                      <p>Profile</p>
+                  </Link>
+              </button>
+            </Footer>
         </div>
-      </section>
-    </>
+    </section>
   );
 };
 

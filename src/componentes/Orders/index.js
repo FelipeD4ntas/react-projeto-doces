@@ -20,30 +20,30 @@ function Orders() {
             <li>No List Items</li>
           </ul>
         </div>
-        <div className="footer-pagina-produtos">
-          <Footer>
-            <button>
-              <Link to="/pagina-produtos">
-                  <img src={iconeFood} />
-                  <p>Food</p>
-              </Link>
-            </button>
-            <button>
-                <Link to="/pagina-order">
-                    <img src={iconeArtigo} />
-                    <p>Orders</p>
-                </Link>
-            </button>
-          
-            <button>
-                <Link to="/pagina-profile">
-                  <img src={iconePerfil} />
-                    <p>Profile</p>
-                </Link>
-            </button>
-          </Footer>
-        </div>
       </section>
+      <div className="container-footer">
+        <Footer>
+          <button>
+            <Link to="/pagina-produtos">
+                <img src={iconeFood} />
+                <p>Food</p>
+            </Link>
+          </button>
+          <button>
+              <Link to="/pagina-order">
+                  <img src={iconeArtigo} />
+                  <p>Orders</p>
+              </Link>
+          </button>
+        
+          <button>
+              <Link to="/pagina-profile">
+                <img src={iconePerfil} />
+                  <p>Profile</p>
+              </Link>
+          </button>
+        </Footer>
+      </div>
     </>
   );
 };
