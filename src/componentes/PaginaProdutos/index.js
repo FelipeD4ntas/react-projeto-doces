@@ -1,10 +1,14 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Topo from '../Topo';
 import ProdutoPattisier from '../ProdutoPatissier';
-import imgDoces from '../assets/imagens/doces.jpg'
-import imgCurso from '../assets/imagens/cursos.jpg'
-import iconePin from '../assets/imagens/icones/pin.svg'
+import imgDoces from '../assets/imagens/doces.jpg';
+import imgCurso from '../assets/imagens/cursos.jpg';
+import iconePin from '../assets/imagens/icones/pin.svg';
+import iconeFood from '../assets/imagens/icones/food.svg'
+import iconeArtigo from '../assets/imagens/icones/artigo.svg'
+import iconePerfil from '../assets/imagens/icones/perfil.svg'
 
 import './style.css';
 
@@ -83,9 +87,6 @@ function PaginaProdutos() {
                               <button className="btn btn-ver-produtos" onClick={clicouBtnProdutoPatissier}>Ver Produtos</button>
                           </div>
                       </div>
-                      <div className='box-produto-pattisier' ref={boxProdutoPatissier}>
-                        <ProdutoPattisier elemento = {boxProdutoPatissier}/>
-                      </div>
                   </div>
 
                   <div className="card-produto" ref={cardProdutoCurso}>
@@ -110,8 +111,32 @@ function PaginaProdutos() {
                   </div>
               </section>
           </div>
-          
-          <Footer />
+          <div className='box-produto-pattisier' ref={boxProdutoPatissier}>
+              <ProdutoPattisier elemento = {boxProdutoPatissier}/>
+          </div>
+          <div className='footer-pagina-produtos'>
+            <Footer>
+              <button>
+                <Link to="/pagina-produtos">
+                    <img src={iconeFood} />
+                    <p>Food</p>
+                </Link>
+              </button>
+              <button>
+                  <Link to="/pagina-order">
+                      <img src={iconeArtigo} />
+                      <p>Orders</p>
+                  </Link>
+              </button>
+            
+              <button>
+                  <Link to="/pagina-profile">
+                    <img src={iconePerfil} />
+                      <p>Profile</p>
+                  </Link>
+              </button>
+            </Footer>
+          </div>
         </section>
     );
 }
