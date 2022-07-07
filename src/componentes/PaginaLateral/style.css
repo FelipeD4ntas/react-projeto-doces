@@ -5,14 +5,6 @@
   flex-direction: column;
 }
 
-.box-icone-voltar h1 {
-  text-align: center;
-  text-align: center;
-  margin: 0 auto;
-  color: white;
-  font-size: 1.9rem;
-}
-
 .box-produto-img {
   width: 100%;
 }

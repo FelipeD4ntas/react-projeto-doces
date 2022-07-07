@@ -1,0 +1,35 @@
+footer {
+    width: 100vw;
+    height: 80px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: -webkit-fixed;
+    position: fixed;
+    bottom: 0;
+}
+
+footer button {
+    background: transparent;
+    margin: 0 50px;
+}
+
+footer button a {
+    color: #868686;
+}
+
+footer a:focus {
+    color: #f4a15d;
+}
+
+footer button a img {
+    width: 40px;
+    padding: 5px;
+}
+
+footer button a:focus img {
+    background: #f4a15d;
+    border-radius: 6px;
+}
+

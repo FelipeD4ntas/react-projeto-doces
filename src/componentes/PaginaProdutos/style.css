@@ -1,14 +1,11 @@
 html {
-    overflow: auto;
-  }
-  
-.body-produtos {
-    overflow: auto;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 60px;
-  }
+  overflow: hidden !important;
+}
 
+body {
+  overflow: hidden !important;
+}
+  
 .topo {
     height: 60px;
     width: 100vw;
@@ -17,13 +14,9 @@ html {
     position: fixed;
     top: 0;
     z-index: 1;
-}
-
-.box-geral-pagina-produtos {
-    justify-content: flex-start;
-    overflow: auto;
-    width: 100%;
-    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .box-buscar {
@@ -121,48 +114,6 @@ html {
     padding: 10px 20px;
     margin-top: 30px;
     color: rgb(61, 61, 61);
-}
-
-.container-footer {
-  max-width: 890px;
-  max-height: 80px;
-  display: flex;
-  justify-content: center;
-}
-
-footer {
-    width: 100vw;
-    height: 80px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: -webkit-fixed;
-    position: fixed;
-    bottom: 0;
-}
-
-footer button {
-    background: transparent;
-    margin: 0 50px;
-}
-
-footer button a {
-    color: #868686;
-}
-
-footer a:focus {
-    color: #f4a15d;
-}
-
-footer button a img {
-    width: 40px;
-    padding: 5px;
-}
-
-footer button a:focus img {
-    background: #f4a15d;
-    border-radius: 6px;
 }
 
 .block {

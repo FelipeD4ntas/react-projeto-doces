@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Topo from '../Topo';
+import Main from '../Main'
 import ProdutoPattisier from '../ProdutoPatissier';
 import imgDoces from '../assets/imagens/doces.jpg';
 import imgCurso from '../assets/imagens/cursos.jpg';
@@ -60,84 +61,83 @@ function PaginaProdutos() {
     }
 
     return (
-        <section className="body-produtos">
-          <Topo />
-          <div className="box-geral box-geral-pagina-produtos">
-              <section className="box-buscar">
-                  <input type="text" placeholder="Search..." id="inputBuscar" ref={inputBuscar} onInput={buscarProduto}/>
-              </section>
-
-              <section className="box-produtos">
-                  <div className="card-produto" ref={cardProduto}>
-                      <div className="titulo-produto">
-                          <h1>Patissier</h1>
-                      </div>
-                      <div className="img-produto">
-                          <img src={imgDoces} alt="Doces"/>
-                      </div>
-                      <div className="descricao-produto">
-                          <p className="paragrafo-localizacao">
-                              <span className="material-symbols-outlined">
-                                  <img src={iconePin} />
-                              </span>
-                              R. Cônego Valadão, 725 - Gopouva, Garulhos - SP, 0740-000 
-                          </p>
-                          <p className="paragrafo-descricao">Modern take on old scholl Vietnamese street food. You'll love it, we promise :)</p>
-                          <div className="box-btn-ver-produtos">
-                              <button className="btn btn-ver-produtos" onClick={clicouBtnProdutoPatissier}>Ver Produtos</button>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div className="card-produto" ref={cardProdutoCurso}>
-                      <div className="titulo-produto">
-                          <h1>Cursos Online</h1>
-                      </div>
-                      <div className="img-produto">
-                          <img src={imgCurso} alt="Cursos"/>
-                      </div>
-                      <div className="descricao-produto">
-                          <p className="paragrafo-localizacao">
-                              <span className="material-symbols-outlined">
-                                <img src={iconePin} />
-                              </span>
-                              Online 
-                          </p>
-                          <p className="paragrafo-descricao">Artisan Sausage truck is a spot for bomb sausage made from ground park, beef or poultry, along with salt, special blend of spices and other flavorings and combos. Some sausages include other ingredients for flavor. Stop by, and check yourself!</p>
-                          <div className="box-btn-ver-produtos">
-                              <button className="btn btn-ver-produtos">Ver Produtos</button>
-                          </div>
-                      </div>
-                  </div>
-              </section>
-          </div>
-          <div className='box-produto-pattisier' ref={boxProdutoPatissier}>
-              <ProdutoPattisier elemento = {boxProdutoPatissier}/>
-          </div>
-          <div className='container-footer'>
-            <Footer>
-              <button>
-                <Link to="/pagina-produtos">
-                    <img src={iconeFood} />
-                    <p>Food</p>
-                </Link>
-              </button>
-              <button>
-                  <Link to="/pagina-order">
-                      <img src={iconeArtigo} />
-                      <p>Orders</p>
-                  </Link>
-              </button>
-            
-              <button>
-                  <Link to="/pagina-profile">
-                    <img src={iconePerfil} />
-                      <p>Profile</p>
-                  </Link>
-              </button>
-            </Footer>
-          </div>
+    <>
+      <Main topoIconeClass = {'iconeNaoVisivel'}>
+        <section className="box-buscar">
+            <input type="text" placeholder="Search..." id="inputBuscar" ref={inputBuscar} onInput={buscarProduto}/>
         </section>
+
+        <section className="box-produtos">
+            <div className="card-produto" ref={cardProduto}>
+              <div className="titulo-produto">
+                  <h1>Patissier</h1>
+              </div>
+              <div className="img-produto">
+                  <img src={imgDoces} alt="Doces"/>
+              </div>
+              <div className="descricao-produto">
+                  <p className="paragrafo-localizacao">
+                      <span className="material-symbols-outlined">
+                          <img src={iconePin} />
+                      </span>
+                      R. Cônego Valadão, 725 - Gopouva, Garulhos - SP, 0740-000 
+                  </p>
+                  <p className="paragrafo-descricao">Modern take on old scholl Vietnamese street food. You'll love it, we promise :)</p>
+                  <div className="box-btn-ver-produtos">
+                      <button className="btn btn-ver-produtos" onClick={clicouBtnProdutoPatissier}>Ver Produtos</button>
+                  </div>
+              </div>
+            </div>
+
+            <div className="card-produto" ref={cardProdutoCurso}>
+                <div className="titulo-produto">
+                    <h1>Cursos Online</h1>
+                </div>
+                <div className="img-produto">
+                    <img src={imgCurso} alt="Cursos"/>
+                </div>
+                <div className="descricao-produto">
+                    <p className="paragrafo-localizacao">
+                        <span className="material-symbols-outlined">
+                          <img src={iconePin} />
+                        </span>
+                        Online 
+                    </p>
+                    <p className="paragrafo-descricao">Artisan Sausage truck is a spot for bomb sausage made from ground park, beef or poultry, along with salt, special blend of spices and other flavorings and combos. Some sausages include other ingredients for flavor. Stop by, and check yourself!</p>
+                    <div className="box-btn-ver-produtos">
+                        <button className="btn btn-ver-produtos">Ver Produtos</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section className='box-produto-pattisier' ref={boxProdutoPatissier}>
+            <ProdutoPattisier elemento = {boxProdutoPatissier}/>
+        </section>
+      </Main>
+      
+      <Footer>
+        <button>
+          <Link to="/pagina-produtos">
+              <img src={iconeFood} />
+              <p>Food</p>
+          </Link>
+        </button>
+        <button>
+            <Link to="/pagina-order">
+                <img src={iconeArtigo} />
+                <p>Orders</p>
+            </Link>
+        </button>
+    
+        <button>
+            <Link to="/pagina-profile">
+              <img src={iconePerfil} />
+                <p>Profile</p>
+            </Link>
+        </button>
+      </Footer>
+    </>
     );
 }
 

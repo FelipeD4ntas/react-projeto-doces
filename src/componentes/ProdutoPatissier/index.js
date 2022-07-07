@@ -13,7 +13,7 @@ function ProdutoPattisier(props) {
       function = { voltarProdutoPatissier } 
       imagemProduto = {imgDocePatissier} 
       txtBotao = 'Start Order'
-      
+      class = ''
     >
       <ItensProdutos 
          tituloItem = 'Prontos para Entrega'
@@ -28,8 +28,7 @@ function ProdutoPattisier(props) {
          descTipoProduto = 'Sabor Baunilha'
          precoProduto = 'R$ 10,00'
       />
-    </PaginaLateral>
-     
+    </PaginaLateral> 
   );
 }
 
