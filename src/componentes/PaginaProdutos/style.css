@@ -128,8 +128,9 @@ body {
   background: white;
   width: 100vw;
   height: 100vh;  
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 100%;
   transition: 1s;
+  z-index: 2;
 }
