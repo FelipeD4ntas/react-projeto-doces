@@ -38,6 +38,7 @@ function Profile(user) {
       img = {iconeConfig}
       topoIconeClass = {classIcone}
       functionTopo = {configurarPerfil}
+      classMain = 'mainPaginaPerfil'
     >
       <section className="box-perfil">
         <h1>{displayName}</h1>

@@ -12,7 +12,7 @@ function Main(props) {
           <h1 className={props.topoIconeClass}>{props.titulo}</h1>
         </div>
       </Topo>
-      <main>
+      <main className={props.classMain}>
         {props.children}
       </main>
     </>

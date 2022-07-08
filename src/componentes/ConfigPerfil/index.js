@@ -3,7 +3,7 @@ import Main from '../Main'
 
 function ConfigPerfil(props) {
   return (
-    <Main functionTopo = {props.function} img = {props.iconeVoltar}>
+    <Main functionTopo = {props.function} img = {props.iconeVoltar} classMain = 'main-pagina-config-perfil'>
       <form className="form-profile">
         <label htmlFor="nome-usuario">
           Full Name
