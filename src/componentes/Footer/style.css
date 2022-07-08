@@ -33,3 +33,6 @@ footer button a:focus img {
     border-radius: 6px;
 }
 
+.footer-produto-patissier {
+    z-index: 2;
+}

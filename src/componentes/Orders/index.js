@@ -13,7 +13,7 @@ function Orders() {
   <>
     <Main topoIconeClass = 'iconeNaoVisivel'>
       <section className="body-orders">
-        <div className="box-geral box-orders">
+        <div className="box-orders">
           <h1>My Orders</h1>
         </div>
         <div className="box-lista-orders">

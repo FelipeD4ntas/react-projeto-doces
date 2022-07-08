@@ -20,7 +20,7 @@ function PaginaLateral(props) {
         </div>
       </div>
     </Main>
-    <Footer>
+    <Footer classFooter = {props.classFooter}>
       <button className="btn btn-pagina-lateral">{props.txtBotao}</button>
     </Footer>
   </>

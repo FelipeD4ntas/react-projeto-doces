@@ -115,7 +115,7 @@ function PaginaPrincipal() {
     if (senhaValida) {
       const password = senhaInscricao.current.value;
       const auth = getAuth();
-
+    
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
       
@@ -230,7 +230,7 @@ function PaginaPrincipal() {
                 <input type="password" id="senhaInscricao" ref={senhaInscricao} name="user-password" placeholder="Enter password..."/>
               </label>
         
-              <button type="submit" className="btn btn-signup" data-js="cont-signup" onClick={clicouBtnInscricao}>
+              <button type="submit" className="btn btn-signup" data-js="cont-signup" onClick={seIncrever}>
                 <a href="#">Sign up</a>
               </button>
             </form>

@@ -13,7 +13,7 @@ function ProdutoPattisier(props) {
       function = { voltarProdutoPatissier } 
       imagemProduto = {imgDocePatissier} 
       txtBotao = 'Start Order'
-      class = ''
+      classFooter = 'footer-produto-patissier'
     >
       <ItensProdutos 
          tituloItem = 'Prontos para Entrega'
