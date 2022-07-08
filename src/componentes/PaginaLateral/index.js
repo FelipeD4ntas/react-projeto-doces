@@ -10,10 +10,10 @@ function PaginaLateral(props) {
   <>
     <Main titulo = {props.titulo} topoIconeClass = {props.class} img = {iconeVoltar} functionTopo = {props.function}>
       <div className="box-produto-img">
-        <img src={props.imagemProduto} alt="Doces" />
+        <img src={props.imagemProduto} alt="Produto" />
       </div>
 
-      <div className="container-box-itens-produtos">
+      <div className={props.classContainer}>
         <div className="box-itens-produtos">
           <h1>{props.titulo}</h1>
           {props.children}

@@ -4,6 +4,7 @@ import Footer from '../Footer';
 import Topo from '../Topo';
 import Main from '../Main'
 import ProdutoPattisier from '../ProdutoPatissier';
+import ProdutoCursoOnline from '../ProdutoCursoOnline';
 import imgDoces from '../assets/imagens/doces.jpg';
 import imgCurso from '../assets/imagens/cursos.jpg';
 import iconePin from '../assets/imagens/icones/pin.svg';
@@ -19,6 +20,7 @@ function PaginaProdutos() {
     const cardProduto = useRef();
     const cardProdutoCurso = useRef();
     const boxProdutoPatissier = useRef();
+    const boxProdutoCurso = useRef();
 
     function mostrarProduto(produtoNaoEncontrado, add, remove) {
       produtoNaoEncontrado.forEach((produtoNaoEncontrado) => {
@@ -58,6 +60,10 @@ function PaginaProdutos() {
     
     function clicouBtnProdutoPatissier() {
       boxProdutoPatissier.current.style.left = '0%';
+    }
+
+    function clicouBntProdutoCurso() {
+      boxProdutoCurso.current.style.left = '0%';
     }
 
     return (
@@ -105,14 +111,18 @@ function PaginaProdutos() {
                     </p>
                     <p className="paragrafo-descricao">Artisan Sausage truck is a spot for bomb sausage made from ground park, beef or poultry, along with salt, special blend of spices and other flavorings and combos. Some sausages include other ingredients for flavor. Stop by, and check yourself!</p>
                     <div className="box-btn-ver-produtos">
-                        <button className="btn btn-ver-produtos">Ver Produtos</button>
+                        <button className="btn btn-ver-produtos" onClick={clicouBntProdutoCurso}>Ver Produtos</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section className='box-produto-pattisier' ref={boxProdutoPatissier}>
+        <section className='box-produto-pattisier-curso' ref={boxProdutoPatissier}>
             <ProdutoPattisier elemento = {boxProdutoPatissier}/>
+        </section>
+
+        <section className='box-produto-pattisier-curso' ref={boxProdutoCurso}>
+            <ProdutoCursoOnline elemento = {boxProdutoCurso}/>
         </section>
       </Main>
       

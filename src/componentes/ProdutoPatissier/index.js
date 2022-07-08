@@ -6,7 +6,8 @@ import imgDocePatissier from '../assets/imagens/produto-doces.jpg';
 function ProdutoPattisier(props) {
   function voltarProdutoPatissier() {
     props.elemento.current.style.left = '100%'
-  }
+  };
+
   return(
     <PaginaLateral
       titulo = 'Patissier' 
@@ -14,6 +15,7 @@ function ProdutoPattisier(props) {
       imagemProduto = {imgDocePatissier} 
       txtBotao = 'Start Order'
       classFooter = 'footer-produto-patissier'
+      classContainer = 'container-box-itens-produto-patissier'
     >
       <ItensProdutos 
          tituloItem = 'Prontos para Entrega'

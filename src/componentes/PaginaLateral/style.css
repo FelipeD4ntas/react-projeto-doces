@@ -24,16 +24,20 @@
   height: max-content;
 }
 
-.container-box-itens-produtos {
+.container-box-itens-produto-patissier {
   display: flex;
   justify-content: center;
   height: 90vh;
 }
 
+.container-box-itens-produto-curso {
+  display: flex;
+  justify-content: center;
+}
+
 .box-itens-produtos {
   background: white;
   width: 95%;
-  height: 100vh;
   position: absolute;
   top: 200px;
   border-radius: 10px;

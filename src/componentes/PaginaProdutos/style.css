@@ -124,7 +124,7 @@ body {
   display: none;
 }
 
-.box-produto-pattisier {
+.box-produto-pattisier-curso {
   background: white;
   width: 100vw;
   height: 100vh;  
@@ -134,3 +134,4 @@ body {
   transition: 1s;
   z-index: 2;
 }
+
