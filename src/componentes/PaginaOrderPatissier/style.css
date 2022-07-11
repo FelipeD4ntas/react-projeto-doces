@@ -1,0 +1,45 @@
+.box-barra-progresso-order {
+    background: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.progresso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    border: 3px solid #E0E0E0;
+    z-index: 0;
+}
+
+.etapa-ativa {
+    background: white;
+    border: 3px solid #df750c;
+}
+
+.progresso p {
+    font-size: 1.7rem;
+    font-weight: bold;
+    opacity: 0;
+}
+
+.etapa-ativa p {
+    opacity: 1;
+}
+
+.progresso-andamento {
+    height: 11px;
+    width: 100px;
+    background: #E0E0E0;
+    margin: 0 -1px
+}
+
+.progresso-finalizado {
+    background: #df750c;
+}

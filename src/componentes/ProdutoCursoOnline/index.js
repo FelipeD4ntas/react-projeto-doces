@@ -16,6 +16,8 @@ function ProdutoCursoOnline(props) {
       txtBotao = 'Start Order'
       classFooter = 'footer-itens-produtos'
       classContainer = 'container-box-itens-produto-curso'
+      classBoxImg = 'box-produto-img'
+      classBoxMeio = 'box-itens-produtos'
     >
       <ItensProdutos 
          tituloItem = 'Curso de Gastronomia'

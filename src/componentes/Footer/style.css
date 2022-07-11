@@ -35,4 +35,5 @@ footer button a:focus img {
 
 .footer-itens-produtos {
     z-index: 2;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.160);
 }
