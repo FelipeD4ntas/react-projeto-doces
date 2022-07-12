@@ -15,7 +15,7 @@
     background: #E0E0E0;
     border-radius: 50%;
     border: 3px solid #E0E0E0;
-    z-index: 0;
+    z-index: 0
 }
 
 .etapa-ativa {
@@ -42,4 +42,27 @@
 
 .progresso-finalizado {
     background: #df750c;
+}
+
+.box-info-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.item-info-order {
+  margin-bottom: 30px;
+  width: 95%;
+}
+
+.item-info-order h2 {
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: #a8a8a8;
+}
+
+.item-info-order p {
+  font-size: 1.5rem;
+  line-height: 2.6rem;
 }
