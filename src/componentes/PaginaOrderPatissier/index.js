@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useState, useRef }  from "react";
 import DateTimePicker from 'react-datetime-picker'
 import PaginaLateral from "../PaginaLateral";
 import 'react-calendar/dist/Calendar.css';
@@ -10,15 +10,19 @@ function OrderPatissier(props) {
   };
   
   const options = {
-    hour: '2-digit', // Formato da hora
-    minute: '2-digit', // Formato dos minutos
-    second: '2-digit', // Formato dos segundos
-	  month: 'long', // Formato do mês
-    year: 'numeric', // Formato do ano
-    day: 'numeric', // Formato do dia
+    timeStyle: 'short',
+    dateStyle: 'full'
   }
-  const date = new Date();
-  console.log(date.toLocaleString('pt-BR', options))
+
+  const dataAtual = new Date();
+  const data = dataAtual.toLocaleString('pt-BR', options)
+  let valorInputData = useRef();
+  const [dataOrder, setData] = useState();
+  
+  function obterValorInput() {
+   
+  }
+  
 
   return(
     <PaginaLateral
@@ -54,7 +58,7 @@ function OrderPatissier(props) {
 
         <div className="item-info-order">
           <h2>Date & Time</h2>
-          <input type="datetime-local" />
+          <input type="datetime-local" ref={valorInputData} onChange={obterValorInput} />
         </div>
       </section>
     </PaginaLateral> 

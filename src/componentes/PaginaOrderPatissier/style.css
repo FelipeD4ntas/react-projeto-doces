@@ -66,3 +66,8 @@
   font-size: 1.5rem;
   line-height: 2.6rem;
 }
+
+.item-info-order input {
+  width: 95%;
+  border: 1px solid #df750c;
+}
