@@ -1,7 +1,5 @@
 import React, { useState, useRef }  from "react";
-import DateTimePicker from 'react-datetime-picker'
 import PaginaLateral from "../PaginaLateral";
-import 'react-calendar/dist/Calendar.css';
 import './style.css';
 
 function OrderPatissier(props) {
