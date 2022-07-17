@@ -2,7 +2,6 @@
   "name": "react-projeto-doces",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://feliped4ntas.github.io/react/react-projeto-doces/",
   "dependencies": {
     "@react-native-community/datetimepicker": "^6.2.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -18,6 +17,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
+    "webpack": "^4.28.4",
     "yarn": "^1.22.19"
   },
   "scripts": {
