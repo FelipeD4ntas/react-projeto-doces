@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Link } from 'react-router-dom';
 import Footer from "../Footer";
-import Topo from "../Topo";
 import Main from '../Main';
 import ConfigPerfil from "../ConfigPerfil";
 import placeholderPerfil from '../assets/imagens/placeholderPerfil.webp';

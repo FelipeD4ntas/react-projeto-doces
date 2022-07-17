@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
-import Topo from '../Topo';
 import Main from '../Main'
 import ProdutoPattisier from '../ProdutoPatissier';
 import ProdutoCursoOnline from '../ProdutoCursoOnline';

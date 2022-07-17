@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Footer from "../Footer";
-import Topo from "../Topo";
 import Main from '../Main';
 import iconeFood from '../assets/imagens/icones/food.svg'
 import iconeArtigo from '../assets/imagens/icones/artigo.svg'

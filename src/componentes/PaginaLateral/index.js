@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import Topo from "../Topo";
 import Footer from "../Footer";
 import Main from '../Main';
 import iconeVoltar from '../assets/imagens/icones/voltar.svg';

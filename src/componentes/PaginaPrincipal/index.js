@@ -1,6 +1,5 @@
 import React, { useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
-import Profile from '../Profile';
 import imgLogo from '../assets/imagens/logo.png';
 import imgIconeRestaurante from '../assets/imagens/icones/icone-restaurante.svg'
 import './style.css'
