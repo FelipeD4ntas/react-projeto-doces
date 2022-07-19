@@ -12,15 +12,41 @@ import iconeArtigo from '../assets/imagens/icones/artigo.svg'
 import iconePerfil from '../assets/imagens/icones/perfil.svg'
 import './style.css';
 
-function Profile(user) {
-  const boxConfigPerfil = useRef()
-  const [classIcone, setClass] = useState('iconeVisivel icone-config')  
 
-  let displayName = 'Nome Usuario'
-  let email = 'felipeicedantas@gmail.com'
-  let photoURL = placeholderPerfil
-  let telefone= 'DDD 00000-0000';
- 
+import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
+import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, getDocs} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCLRw6P1217lxAUOSx79SUKQZ3REyXdg_w',
+  authDomain: 'doces-patissier.firebaseapp.com',
+  projectId: 'doces-patissier',
+  storageBucket: 'doces-patissier.appspot.com',
+  messagingSenderId: '725465980940',
+  appId: '1:725465980940:web:c6be38fa9e004da2714e29',
+  measurementId: 'G-3F4Y9PQX4M'
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+function Profile() {
+  const boxConfigPerfil = useRef()
+  const [classIcone, setClass] = useState('iconeVisivel icone-config');
+  const [displayName, setDisplayName] = useState('Nome Usuario');
+  const [email, setEmail] = useState('email usuario');
+  const [photoURL, setPhotoURL] = useState(placeholderPerfil);
+  const [telefone, setTelefone] = useState('DDD 00000-0000');
+  
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setEmail(user.email)
+    } else {
+      console.log('Usuario deslogado')
+    }
+  });
+    
+
   function configurarPerfil() {
     boxConfigPerfil.current.style.left = '0%';
     setClass('iconeNaoVisivel')

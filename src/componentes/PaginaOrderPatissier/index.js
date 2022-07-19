@@ -1,4 +1,4 @@
-import React, { useState, useRef }  from "react";
+import React from "react";
 import PaginaLateral from "../PaginaLateral";
 import './style.css';
 
@@ -6,21 +6,15 @@ function OrderPatissier(props) {
   function voltarParaPaginaProdutoPatissier() {
     props.elemento.current.style.left = '100%'
   };
-  
-  const options = {
-    timeStyle: 'short',
-    dateStyle: 'full'
-  }
 
   const dataAtual = new Date();
-  const data = dataAtual.toLocaleString('pt-BR', options)
-  let valorInputData = useRef();
-  const [dataOrder, setData] = useState();
-  
-  function obterValorInput() {
-   
-  }
-  
+  const ano = dataAtual.getFullYear();
+  const mes = dataAtual.getMonth() < 9 ? '0' + dataAtual.getMonth() : dataAtual.getMonth();
+  const dia = dataAtual.getDate();
+  const hora = dataAtual.getHours() < 9 ? '0' + dataAtual.getHours() : dataAtual.getHours();
+  const minutos = dataAtual.getMinutes() < 10 ? '0' + dataAtual.getMinutes() : dataAtual.getMinutes();
+  let valorCustom = `${ano}-${mes}-${dia}T${hora}:${minutos}`;
+
 
   return(
     <PaginaLateral
@@ -56,7 +50,7 @@ function OrderPatissier(props) {
 
         <div className="item-info-order">
           <h2>Date & Time</h2>
-          <input type="datetime-local" ref={valorInputData} onChange={obterValorInput} />
+          <input type="datetime-local" defaultValue={valorCustom}/>
         </div>
       </section>
     </PaginaLateral> 

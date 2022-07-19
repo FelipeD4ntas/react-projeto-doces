@@ -1,10 +1,11 @@
 import React, { useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
+import Profile from '../Profile';
 import imgLogo from '../assets/imagens/logo.png';
 import imgIconeRestaurante from '../assets/imagens/icones/icone-restaurante.svg'
 import './style.css'
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
+import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
 import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, getDocs} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
@@ -38,6 +39,7 @@ function PaginaPrincipal() {
   
   const [usuarioEstaLogado, setUsuarioLogado] = useState('/');
   let index = 1;
+
 
   function clicouBtnInscricao() {
     index = 1
@@ -140,14 +142,24 @@ function PaginaPrincipal() {
     const email = emailLogin.current.value;
     const password = senhaLogin.current.value;
 
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        auth.persistenceManager.persistence.type = 'LOCAL'
+        return signInWithEmailAndPassword(auth, email, password);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        const auth = getAuth();
         onAuthStateChanged(auth, async (user) => {
           if (user) {
-            setUsuarioLogado('/pagina-produtos')
+            setUsuarioLogado('/pagina-produtos');
+            console.log(user)
           } else {
-            console.log('Usuario deslogado')
+            console.log('Usuario deslogado');
           }
         });
       })
