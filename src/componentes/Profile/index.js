@@ -14,8 +14,7 @@ import './style.css';
 
 
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
-import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, getDocs} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
+import { getAuth, onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCLRw6P1217lxAUOSx79SUKQZ3REyXdg_w',
@@ -41,6 +40,7 @@ function Profile() {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setEmail(user.email)
+      setDisplayName(user.displayName)
     } else {
       console.log('Usuario deslogado')
     }
