@@ -157,7 +157,6 @@ function PaginaPrincipal() {
         onAuthStateChanged(auth, async (user) => {
           if (user) {
             setUsuarioLogado('/pagina-produtos');
-            console.log(user)
           } else {
             console.log('Usuario deslogado');
           }

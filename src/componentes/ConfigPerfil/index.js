@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import Main from '../Main';
+import photoURL from '../assets/imagens/placeholderPerfil.webp';
 import { initializeApp} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
-import { getAuth, updateProfile} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
+import { getAuth, onAuthStateChanged, updateProfile} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCLRw6P1217lxAUOSx79SUKQZ3REyXdg_w',
@@ -20,25 +21,48 @@ const auth = getAuth();
 function ConfigPerfil(props) {
   const inputNomeUsuario = useRef()
   const inputFotoUsuario = useRef();
-  const [nomeUsuario, setNomeUsuario] = useState('');
-  const [fotoUsuario, setFotoUsuario] = useState('');
-  console.log(inputFotoUsuario)
-  
-  function obterValoresInput(event) {
-    event.preventDefault()
-    setNomeUsuario(inputNomeUsuario.current.value)
-  }
-  
-  console.log(nomeUsuario)
+  const [nomeUsuario, setNomeUsuario] = useState(null);
+  const [fotoUsuario, setFotoUsuario] = useState(photoURL);
+  let nameUser = null
 
-  updateProfile(auth.currentUser, {
-    displayName: nomeUsuario
-  }).then(() => {
-    // Profile updated!
-    // ...
-  }).catch((error) => {
-    // An error occurred
-    // ...
+  function obterUrlFotoPerfil(event) {
+    if (!(event.target && event.target.files && event.target.files.length > 0)) {
+      return;
+    }
+
+    let urlPhoto = new FileReader();
+
+    urlPhoto.onload = function() {
+      setFotoUsuario(urlPhoto.result);
+    }
+  
+    urlPhoto.readAsDataURL(event.target.files[0]);
+  }  
+
+  function obterValoresInput(event) {
+    event.preventDefault();
+    setNomeUsuario(inputNomeUsuario.current.value);
+    console.log(nomeUsuario)
+    if(nomeUsuario !== null) {
+      nameUser = nomeUsuario
+    }
+    obterUrlFotoPerfil(event)
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      updateProfile(user, {
+        displayName: nameUser,
+        photoURL: fotoUsuario
+      }).then(() => {
+        console.log(user)
+      }).catch((error) => {
+        
+      });
+    } else {
+      // User is signed out
+      // ...
+    }
   });
 
   return (
@@ -53,10 +77,10 @@ function ConfigPerfil(props) {
           Profile Picture
           <div className="max-width">
             <div className="imageContainer">
-              <img src={props.photoURL} alt="Selecione uma imagem" id="imgPhoto" />
+              <img src={fotoUsuario} alt="Selecione uma imagem" id="imgPhoto" />
             </div>
             </div>
-            <input type="file" id="img-perfil-user" name="img-perfil-user" accept="image/*" ref={inputFotoUsuario}/>
+            <input type="file" id="img-perfil-user" name="img-perfil-user" accept="image/*" ref={inputFotoUsuario} onChange={obterValoresInput}/>
             <p className="p-mudar-foto">Mudar Foto</p>
           </label>
 
