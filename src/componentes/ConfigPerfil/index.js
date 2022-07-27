@@ -23,7 +23,6 @@ function ConfigPerfil(props) {
   const inputFotoUsuario = useRef();
   const [nomeUsuario, setNomeUsuario] = useState(null);
   const [fotoUsuario, setFotoUsuario] = useState(photoURL);
-  let nameUser = null
 
   function obterUrlFotoPerfil(event) {
     if (!(event.target && event.target.files && event.target.files.length > 0)) {
@@ -34,6 +33,7 @@ function ConfigPerfil(props) {
 
     urlPhoto.onload = function() {
       setFotoUsuario(urlPhoto.result);
+      console.log(urlPhoto.result)
     }
   
     urlPhoto.readAsDataURL(event.target.files[0]);
@@ -42,20 +42,17 @@ function ConfigPerfil(props) {
   function obterValoresInput(event) {
     event.preventDefault();
     setNomeUsuario(inputNomeUsuario.current.value);
-    console.log(nomeUsuario)
-    if(nomeUsuario !== null) {
-      nameUser = nomeUsuario
-    }
+
     obterUrlFotoPerfil(event)
   }
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       updateProfile(user, {
-        displayName: nameUser,
+        displayName: nomeUsuario,
         photoURL: fotoUsuario
       }).then(() => {
-        console.log(user)
+        
       }).catch((error) => {
         
       });

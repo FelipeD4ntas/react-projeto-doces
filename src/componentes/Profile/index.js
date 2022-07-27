@@ -38,9 +38,13 @@ function Profile() {
   const [telefone, setTelefone] = useState('DDD 00000-0000');
   
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setEmail(user.email)
-      setDisplayName(user.displayName)
+    if (user !== null) {
+      const displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const uid = user.uid;
+      setEmail(email)
+      setDisplayName(displayName)
     } else {
       console.log('Usuario deslogado')
     }
